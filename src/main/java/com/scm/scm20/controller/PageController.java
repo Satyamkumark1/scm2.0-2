@@ -20,6 +20,10 @@ public class PageController {
     public String services() {
         return "services";
     }
+    @GetMapping("/register")
+    public String register() {
+        return "register";  
+    }
 
    
 }
