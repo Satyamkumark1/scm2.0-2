@@ -50,6 +50,12 @@ public class PageController {
         return "register";  
     }
 
+    @GetMapping("/login")
+    public String login () {
+        return "login"; // Returns the login view
+
+    }
+
     // Handles POST requests to '/do-register' to process user registration
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
     public String processRegistration(Model model, UserForm userForm) {
@@ -63,6 +69,7 @@ public class PageController {
         .email(userForm.getEmail())
         .phoneNumber(userForm.getPhoneNumber())
         .password(userForm.getPassword())
+        .UserGender(userForm.getUserGender()) // Use the userGender field from UserForm
         .build();
 
         // Save the user using the UserServices bean

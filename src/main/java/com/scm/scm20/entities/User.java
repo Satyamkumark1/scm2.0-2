@@ -29,6 +29,9 @@ public class User {
     private  String profilecPic;
     private  String phoneNumber;
 
+    @Column(length = 1000)
+    private String UserGender;
+
     private  boolean enabled=false;
     private  boolean emailVerified = false;
     private  boolean phoneVerfied=false;

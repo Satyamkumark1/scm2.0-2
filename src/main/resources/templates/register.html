@@ -1,3 +1,9 @@
+<!--
+  Registration Page (register.html)
+  - This page provides a registration form for new users to create an account in the Smart Contact Manager application.
+  - The form collects user details and submits them to the backend for processing.
+  - Uses Thymeleaf for server-side rendering and Spring Boot for backend logic.
+-->
 <!DOCTYPE html>
 <html
   lang="en"
@@ -5,11 +11,19 @@
   xmlns:th="http://www.thymeleaf.org"
 >
   <head>
+    <!--
+      Meta tags for character set and responsive design
+      Title for the registration page
+    -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register | Smart Contact Manager</title>
   </head>
   <body>
+    <!--
+      Main content container with flex and grid layout for centering the registration card
+      Uses Tailwind CSS utility classes for styling and responsiveness
+    -->
     <div id="content" class="flex justify-center rounded-xl items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800">
       <div class="grid grid-cols-12 w-full">
         <div class="col-span-0 rounded-xl md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
@@ -17,6 +31,9 @@
           <div
             class="w-full rounded-xl max-w-md p-8 bg-white border border-t-8 border-blue-700 shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all"
           >
+            <!--
+              Header section: Title and subtitle for the registration form
+            -->
             <h1
               class="mb-2 text-3xl font-extrabold tracking-tight text-blue-700 dark:text-blue-300 text-center"
             >
@@ -26,13 +43,23 @@
               Start managing your contacts in the cloud
             </p>
             
-            <!-- Registration Form -->
+            <!--
+              Registration Form
+              - Submits to /do-register (handled by PageController in backend)
+              - Binds to a UserForm object (Spring model attribute)
+              - Uses POST method for secure data submission
+            -->
             <form th:action="@{/do-register}"
                   data-th-object="${userForm}"
                   method="post"
                   class="space-y-5"
                   autocomplete="off">
-              <!-- Name -->
+              <!-- Name Field -->
+              <!--
+                User's full name (required)
+                - Binds to 'name' property in UserForm
+                - Max length: 100 characters
+              -->
               <div>
                 <label
                   for="name"
@@ -42,7 +69,7 @@
                 <input
                   type="text"
                   id="name"
-                  data-th-field="*{name}"
+                  data-th-field="*{name}" // Binds to 'name' property in UserForm
                   name="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter your full name"
@@ -50,7 +77,13 @@
                   maxlength="100"
                 />
               </div>
-              <!-- Email -->
+              <!-- Email Field -->
+              <!--
+                User's email address (required, unique)
+                - Binds to 'email' property in UserForm
+                - Max length: 100 characters
+                - HTML5 email validation
+              -->
               <div>
                 <label
                   for="email"
@@ -59,7 +92,7 @@
                 >
                 <input
                   type="email"
-                   data-th-field="*{email}"
+                   data-th-field="*{email}" // Binds to 'email' property in UserForm
                   id="email"
                   name="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -69,7 +102,13 @@
                   autocomplete="email"
                 />
               </div>
-              <!-- Password -->
+              <!-- Password Field -->
+              <!--
+                User's password (required)
+                - Binds to 'password' property in UserForm
+                - Min length: 6, Max length: 100
+                - Uses password input type for security
+              -->
               <div>
                 <label
                   for="password"
@@ -77,7 +116,7 @@
                   >Password</label
                 >
                 <input
-                 data-th-field="*{password}"
+                 data-th-field="*{password}" // Binds to 'password' property in UserForm
                   type="password"
                   id="password"
                   name="password"
@@ -89,7 +128,16 @@
                   autocomplete="new-password"
                 />
               </div>
-              <!-- Contact Number -->
+
+              
+              
+              <!-- Contact Number Field -->
+              <!--
+                User's contact number (required, unique)
+                - Binds to 'phoneNumber' property in UserForm
+                - Pattern: international phone number (7-15 digits, optional +)
+                - Max length: 20
+              -->
               <div>
                 <label
                   for="contact"
@@ -99,7 +147,7 @@
                 <input
                   type="tel"
                   id="contact"
-                   data-th-field="*{phoneNumber}"
+                   data-th-field="*{phoneNumber}" // Binds to 'phoneNumber' property in UserForm
                   name="phoneNumber"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="e.g. +1 234 567 8901"
@@ -109,7 +157,12 @@
                   autocomplete="tel"
                 />
               </div>
-              <!-- About -->
+              <!-- About Field -->
+              <!--
+                User's self-description (optional)
+                - Binds to 'about' property in UserForm
+                - Max length: 1000 characters
+              -->
               <div>
                 <label
                   for="about"
@@ -119,14 +172,40 @@
                 <textarea
                   id="about"
                   name="about"
-                   data-th-field="*{about}"
+                   data-th-field="*{about}" // Binds to 'about' property in UserForm
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Tell us something about yourself (optional)"
                   maxlength="1000"
                 ></textarea>
               </div>
-              <!-- Terms and Conditions -->
+              <!-- Gender Field -->
+              <!--
+                User's gender (optional)
+                - Binds to 'gender' property in UserForm
+                - Options: Male, Female, Other
+              -->
+              <div>
+                <label for="gender" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  data-th-field="*{userGender}" 
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option value="" selected>Select your gender (optional)</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <!-- Terms and Conditions Checkbox -->
+              <!--
+                User must agree to terms and conditions to register
+                - Required checkbox
+              -->
               <div class="flex items-center">
                 <input
                   id="terms"
@@ -139,15 +218,19 @@
                   I agree to the <a href="#" class="text-blue-600 hover:underline">Terms &amp; Conditions</a>
                 </label>
               </div>
-              <!-- Submit button -->
+              <!-- Submit Button -->
+              <!--
+                Submits the registration form
+              -->
               <div>
                 <button
-                  type="submit"
+                  type="submit" 
                   class="w-full py-2.5 px-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base transition-colors dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Create Account
                 </button>
               </div>
+              <!-- Link to Login Page -->
               <div class="text-center mt-2">
                 <span class="text-sm text-gray-500 dark:text-gray-400">Already have an account?</span>
                 <a href="/login" class="text-blue-600 hover:underline text-sm ml-1">Sign in</a>
@@ -159,6 +242,10 @@
       </div>
     </div>
 
+    <!--
+      Optional JavaScript section for UI enhancements (e.g., password visibility toggle, success alerts)
+      - Currently commented out, can be enabled as needed
+    -->
     <script>
       // Password visibility toggle (optional enhancement)
       // Add a toggle button if you want to allow users to see their password
