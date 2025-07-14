@@ -28,6 +28,7 @@ public class User {
     @Column(length = 1000)
     private  String profilecPic;
     private  String phoneNumber;
+    private String userGender;
 
     @Column(length = 1000)
     private String UserGender;
@@ -36,10 +37,14 @@ public class User {
     private  boolean emailVerified = false;
     private  boolean phoneVerfied=false;
 
+
+    @Enumerated(EnumType.STRING)
     private Providers providers=Providers.SELF;
     private String providerUserId;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    // OneToMany relationship with Contact entity 
+    // The mappedBy attribute indicates that the Contact entity has a field named "user" that maps to this User entity
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true) //
     private List<Contact> contactList =new ArrayList<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
