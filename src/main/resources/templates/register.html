@@ -1,173 +1,174 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  th:replace="~{base :: parent(~{:: #content},~{:: title},~{:: script})}"
-  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
 >
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register | Smart Contact Manager</title>
+    <title>Signup</title>
   </head>
   <body>
-    <div id="content" class="flex justify-center rounded-xl items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800">
-      <div class="grid grid-cols-12 w-full">
-        <div class="col-span-0 rounded-xl md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
-        <div class="col-span-12 md:col-span-8 rounded-xl lg:col-span-6 xl:col-span-4 flex justify-center">
+    <div id="content">
+      <div class="grid grid-cols-12 mt-4">
+        <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+        <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+          <!-- 6 ki spance le rhi hai -->
+          <!-- card -->
           <div
-            class="w-full rounded-xl max-w-md p-8 bg-white border border-t-8 border-blue-700 shadow-lg dark:bg-gray-800 dark:border-gray-700 transition-all"
+            class="block p-6 border-t-[10px] border-blue-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:hover:bg-gray-700"
           >
-            <h1
-              class="mb-2 text-3xl font-extrabold tracking-tight text-blue-700 dark:text-blue-300 text-center"
+            <!-- message here -->
+
+            <div data-th-replace="message::messagebox"></div>
+
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
-              Create Your Account
-            </h1>
-            <p class="mb-6 text-center text-gray-500 dark:text-gray-400">
-              Start managing your contacts in the cloud
+              Signup Here
+            </h5>
+            <p class="font-normal text-gray-400 dark:text-gray-400">
+              Start managing contacts on cloud ...
             </p>
-            
-            <!-- Registration Form -->
-            <form th:action="@{/do-register}"
-                  data-th-object="${userForm}"
-                  method="post"
-                  class="space-y-5"
-                  autocomplete="off">
-              <!-- Name -->
-              <div>
+
+            <!-- this is  form -->
+            <form
+              data-th-action="@{'/do-register'}"
+              method="post"
+              data-th-object="${userForm}"
+              class="mt-5"
+              novalidate
+            >
+              <!-- name  -->
+
+              <div class="mb-3">
                 <label
-                  for="name"
-                  class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-                  >Full Name</label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Name</label
                 >
                 <input
                   type="text"
                   id="name"
                   data-th-field="*{name}"
-                  name="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter your full name"
+                  placeholder="Enter here"
                   required
-                  maxlength="100"
                 />
+
+                <p
+                  data-th-if="${#fields.hasErrors('name')}"
+                  data-th-errors="*{name}"
+                  class="text-red-600 px-1 py-2"
+                >
+                  Name is required
+                </p>
               </div>
-              <!-- Email -->
-              <div>
+              <!-- email field -->
+              <div class="mb-3">
                 <label
                   for="email"
-                  class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-                  >Email Address</label
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Email</label
                 >
                 <input
+                  data-th-field="*{email}"
                   type="email"
-                   data-th-field="*{email}"
                   id="email"
-                  name="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="you@example.com"
+                  placeholder="name@flowbite.com"
                   required
-                  maxlength="100"
-                  autocomplete="email"
                 />
+                <p
+                  data-th-if="${#fields.hasErrors('email')}"
+                  data-th-errors="*{email}"
+                  class="text-red-600 px-1 py-2"
+                ></p>
               </div>
-              <!-- Password -->
-              <div>
+              <!-- password field -->
+              <div class="mb-3">
                 <label
                   for="password"
-                  class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-                  >Password</label
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >New Password</label
                 >
                 <input
-                 data-th-field="*{password}"
+                  data-th-field="*{password}"
                   type="password"
                   id="password"
-                  name="password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Create a password"
                   required
-                  minlength="6"
-                  maxlength="100"
-                  autocomplete="new-password"
                 />
+                <p
+                  data-th-if="${#fields.hasErrors('password')}"
+                  data-th-errors="*{password}"
+                  class="text-red-600 px-1 py-2"
+                ></p>
               </div>
-              <!-- Contact Number -->
-              <div>
+              <!-- Phone field -->
+              <div class="mb-3">
                 <label
-                  for="contact"
-                  class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+                  for="phone"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >Contact Number</label
                 >
                 <input
-                  type="tel"
-                  id="contact"
-                   data-th-field="*{phoneNumber}"
-                  name="phoneNumber"
+                  data-th-field="*{phoneNumber}"
+                  type="text"
+                  id="phone"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="e.g. +1 234 567 8901"
-                  pattern="^\+?\d{7,15}$"
                   required
-                  maxlength="20"
-                  autocomplete="tel"
                 />
+
+                <p
+                  data-th-if="${#fields.hasErrors('phoneNumber')}"
+                  data-th-errors="*{phoneNumber}"
+                  class="text-red-600 px-1 py-2"
+                ></p>
               </div>
-              <!-- About -->
-              <div>
+
+              <!-- about textarea -->
+              <div class="mb-3">
                 <label
                   for="about"
-                  class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-                  >About You</label
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Write something about yourself</label
                 >
                 <textarea
+                  data-th-field="*{about}"
                   id="about"
-                  name="about"
-                   data-th-field="*{about}"
-                  rows="4"
+                  rows="6"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Tell us something about yourself (optional)"
-                  maxlength="1000"
+                  placeholder="Write here..."
                 ></textarea>
+
+                <p
+                  data-th-if="${#fields.hasErrors('about')}"
+                  data-th-errors="*{about}"
+                  class="text-red-600 px-1 py-2"
+                ></p>
               </div>
-              <!-- Terms and Conditions -->
-              <div class="flex items-center">
-                <input
-                  id="terms"
-                  name="terms"
-                  type="checkbox"
-                  required
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label for="terms" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
-                  I agree to the <a href="#" class="text-blue-600 hover:underline">Terms &amp; Conditions</a>
-                </label>
-              </div>
-              <!-- Submit button -->
-              <div>
+              <!-- button -->
+
+              <div class="mb-3 flex justify-center space-x-3">
                 <button
                   type="submit"
-                  class="w-full py-2.5 px-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base transition-colors dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="px-3 py-2 rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800"
                 >
-                  Create Account
+                  Singup
                 </button>
-              </div>
-              <div class="text-center mt-2">
-                <span class="text-sm text-gray-500 dark:text-gray-400">Already have an account?</span>
-                <a href="/login" class="text-blue-600 hover:underline text-sm ml-1">Sign in</a>
+                <button
+                  type="reset"
+                  class="px-3 py-2 rounded bg-orange-800 hover:bg-orange text-white dark:bg-orange-800 dark:hover:bg-orange-800"
+                >
+                  Reset
+                </button>
               </div>
             </form>
           </div>
         </div>
-        <div class="col-span-0 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
       </div>
     </div>
-
     <script>
-      // Password visibility toggle (optional enhancement)
-      // Add a toggle button if you want to allow users to see their password
-      // Example: https://flowbite.com/docs/forms/input-field/#password-toggle
-
-      // Example: Show a toast or alert on successful registration (to be implemented in backend)
-      // if (window.location.search.includes('success')) {
-      //   alert('Registration successful! Please check your email to verify your account.');
-      // }
+      console.log("Signup page");
     </script>
   </body>
 </html>
