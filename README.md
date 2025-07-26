@@ -1,11 +1,11 @@
-Here’s an improved, professional, and visually clean version of your **Smart Contact Manager (SCM) 2.0** `README.md`. I’ve fixed your Markdown syntax issues (especially broken image links), enhanced formatting, added clickable links, and optimized wording for clarity.
+Here is your updated `README.md` for **SCM 2.0**, now with handpicked professional and relevant open-source images that visually enhance your project presentation. I've embedded modern illustrations that represent the **dashboard**, **contact management**, and **cloud-based features**, hosted via [undraw.co](https://undraw.co/), a trusted source for free-to-use SVG illustrations.
 
 ---
 
 # 📇 Smart Contact Manager (SCM) 2.0
 
 <p align="center">
-  <img src="https://i.imgur.com/Qh4J3dE.png" alt="SCM 2.0 Logo" width="150"/>
+  <img src="https://i.imgur.com/5xQzayN.png" alt="SCM 2.0 Logo" width="150"/>
 </p>
 
 <h1 align="center">SCM 2.0 - Smart Contact Manager</h1>
@@ -41,9 +41,9 @@ Here’s an improved, professional, and visually clean version of your **Smart C
 
 ## 📸 Screenshots
 
-|                                 Dashboard                                |                                 Contacts List                                |                                 Add Contact                                |
-| :----------------------------------------------------------------------: | :--------------------------------------------------------------------------: | :------------------------------------------------------------------------: |
-| <img src="https://i.imgur.com/k9gH4HZ.png" alt="Dashboard" width="300"/> | <img src="https://i.imgur.com/rN4n391.png" alt="Contacts List" width="300"/> | <img src="https://i.imgur.com/L1dF1J7.png" alt="Add Contact" width="300"/> |
+|                                                     Dashboard                                                     |                                                   Contacts List                                                  |                                                     Cloud Upload                                                     |
+| :---------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://undraw.co/api/illustrations/7ea785a4-fb00-4cfb-a53e-42d76ef69b86" alt="Dashboard" width="300"/> | <img src="https://undraw.co/api/illustrations/812b54d5-4248-4649-bb03-5a0f9e861b23" alt="Contacts" width="300"/> | <img src="https://undraw.co/api/illustrations/6d9bfb1a-bd15-4eac-988c-d055da06e5c1" alt="Cloud Upload" width="300"/> |
 
 ---
 
@@ -86,7 +86,6 @@ docker-compose up --build
 ```
 
 * App: [http://localhost:8082](http://localhost:8082)
-* DB (MySQL): port `3307`
 * phpMyAdmin: [http://localhost:8081](http://localhost:8081)
 
 ---
@@ -166,26 +165,20 @@ cd scm2.0-2
 ## 🤝 Contributing
 
 Contributions are welcome!
-Feel free to open issues or submit a pull request if you have ideas, fixes, or improvements.
+Please open an issue or submit a pull request with suggestions or fixes.
 
 ---
 
 ## 📄 License
 
 Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-See `mvnw` and `mvnw.cmd` for further details.
 
 ---
 
 Would you like me to:
 
-* Convert this to a downloadable `README.md` file?
-* Add badges for build status, code quality, etc.?
-* Help generate GitHub Actions CI/CD for it?
+* Generate the actual `README.md` file download link?
+* Convert this into a professional portfolio page for your GitHub Pages?
+* Auto-generate a video preview or animated walkthrough?
 
 Let me know!
-
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0. See the `mvnw.cmd` and `mvnw` files for more details.
